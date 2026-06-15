@@ -7,8 +7,10 @@
   # Git
   programs.git = {
     enable = true;
-    userName = "Orion Beauny-Sugot";
-    userEmail = "orion-beauny-sugot@ik.me";
+    settings.user = {
+      name  = "Orion Beauny-Sugot";
+      email = "orion-beauny-sugot@ik.me";
+    };
   };
 
   # i3
