@@ -126,7 +126,8 @@
     }
     window {
       background-color: @bg;
-      border:           2px solid @accent;
+      border:           2px;
+      border-color:     @accent;
       border-radius:    8px;
       padding:          12px;
       width:            600px;
