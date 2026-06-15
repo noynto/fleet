@@ -30,7 +30,7 @@
         { command = "picom --daemon";  notification = false; }
         { command = "nm-applet";       notification = false; }
         { command = "dunst";           notification = false; }
-        { command = "${pkgs.feh}/bin/feh --bg-color '#1e1e2e'"; notification = false; }
+        { command = "xsetroot -solid '#1e1e2e'"; notification = false; }
       ];
 
       bars = [{
