@@ -97,7 +97,7 @@
   }];
 
   # Fermeture couvercle → hibernation
-  services.logind.lidSwitch = "hibernate";
+  services.logind.settings.Login.HandleLidSwitch = "hibernate";
 
   # Reprise depuis hibernation
   boot.resumeDevice = "/dev/disk/by-uuid/eb9d1cec-9b90-45fe-9e88-bcc9cbe5e905";
