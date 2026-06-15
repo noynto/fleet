@@ -50,6 +50,9 @@
     brave
   ];
 
+  # i3lock — authentification PAM
+  security.pam.services.i3lock = {};
+
   # SSH
   services.openssh = {
     enable = true;
