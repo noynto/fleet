@@ -5,6 +5,9 @@
     ./hardware-configuration.nix
   ];
 
+  # Paquets non-libres (brave, zed-editor, claude-code)
+  nixpkgs.config.allowUnfree = true;
+
   # Boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
