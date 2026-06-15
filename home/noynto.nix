@@ -105,14 +105,6 @@
     };
   };
 
-  # Compositeur
-  services.picom = {
-    enable = true;
-    fade = true;
-    fadeDelta = 5;
-    shadow = false;
-    backend = "glx";
-  };
 
   # Lanceur d'applications
   programs.rofi = {
@@ -211,32 +203,31 @@
     };
   };
 
-  # Notifications
-  services.dunst = {
-    enable = true;
-    settings = {
-      global = {
-        background   = "#1e1e2e";
-        foreground   = "#cdd6f4";
-        frame_color  = "#89b4fa";
-        font         = "monospace 10";
-        corner_radius = 8;
-        offset       = "10x10";
-        origin       = "top-right";
-      };
-      urgency_normal   = { timeout = 5; };
-      urgency_critical = { background = "#f38ba8"; foreground = "#1e1e2e"; timeout = 0; };
-    };
-  };
+  # Config dunst (démarré par i3)
+  xdg.configFile."dunst/dunstrc".text = ''
+    [global]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#89b4fa"
+    font = monospace 10
+    corner_radius = 8
+    offset = 10x10
+    origin = top-right
 
-  # Propagation du thème GTK dans i3
-  services.xsettingsd = {
-    enable = true;
-    settings = {
-      "Net/ThemeName"     = "Catppuccin-Mocha-Standard-Blue-Dark";
-      "Net/IconThemeName" = "Papirus-Dark";
-    };
-  };
+    [urgency_normal]
+    timeout = 5
+
+    [urgency_critical]
+    background = "#f38ba8"
+    foreground = "#1e1e2e"
+    timeout = 0
+  '';
+
+  # Config xsettingsd (démarré par i3)
+  xdg.configFile."xsettingsd/xsettingsd.conf".text = ''
+    Net/ThemeName "Catppuccin-Mocha-Standard-Blue-Dark"
+    Net/IconThemeName "Papirus-Dark"
+  '';
 
   # Thème GTK
   gtk = {
@@ -281,6 +272,9 @@
     i3lock
     brightnessctl
     networkmanagerapplet
+    picom
+    dunst
+    xsettingsd
   ];
 
   home.stateVersion = "25.05";
