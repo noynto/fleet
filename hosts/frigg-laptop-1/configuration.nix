@@ -73,10 +73,31 @@
   };
 
   # Performance
-  powerManagement.cpuFreqGovernor = "schedutil";
-  services.fstrim.enable = true;   # trim SSD périodiquement
-  zramSwap.enable = true;          # swap compressé en RAM, évite le disque
+  services.fstrim.enable = true;
+  zramSwap.enable = true;
   boot.kernel.sysctl."vm.swappiness" = 10;
+
+  # TLP — gestion batterie
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC  = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_AC  = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      WIFI_PWR_ON_AC  = "off";
+      WIFI_PWR_ON_BAT = "on";
+    };
+  };
+
+  # Swap fichier pour l'hibernation (4Go = taille RAM)
+  swapDevices = [{
+    device = "/swapfile";
+    size   = 4096;
+  }];
+
+  # Fermeture couvercle → hibernation
+  services.logind.lidSwitch = "hibernate";
 
   system.stateVersion = "25.05";
 }
