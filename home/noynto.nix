@@ -229,18 +229,20 @@
     Net/IconThemeName "Papirus-Dark"
   '';
 
-  # Thème GTK
-  gtk = {
-    enable = true;
-    theme = {
-      name    = "Catppuccin-Mocha-Standard-Blue-Dark";
-      package = pkgs.catppuccin-gtk;
-    };
-    iconTheme = {
-      name    = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-  };
+  # Thème GTK (sans dconf pour éviter l'erreur D-Bus hors session)
+  xdg.configFile."gtk-3.0/settings.ini".text = ''
+    [Settings]
+    gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
+    gtk-icon-theme-name=Papirus-Dark
+    gtk-application-prefer-dark-theme=true
+  '';
+  xdg.configFile."gtk-4.0/settings.ini".text = ''
+    [Settings]
+    gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
+    gtk-icon-theme-name=Papirus-Dark
+    gtk-application-prefer-dark-theme=true
+  '';
+
 
   # Terminal Kitty — Catppuccin Mocha
   programs.kitty = {
@@ -275,6 +277,8 @@
     picom
     dunst
     xsettingsd
+    catppuccin-gtk
+    papirus-icon-theme
   ];
 
   home.stateVersion = "25.05";
