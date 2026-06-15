@@ -27,6 +27,7 @@
       };
 
       startup = [
+        { command = "xinput disable 'ELAN25B2:00 04F3:25B2'"; notification = false; }
         { command = "picom --daemon";  notification = false; }
         { command = "nm-applet";       notification = false; }
         { command = "dunst";           notification = false; }
@@ -40,7 +41,7 @@
           background = "#1e1e2e";
           statusline = "#cdd6f4";
           separator  = "#585b70";
-          focusedWorkspace  = { background = "#89b4fa"; border = "#89b4fa"; text = "#1e1e2e"; };
+          focusedWorkspace  = { background = "#eba0ac"; border = "#eba0ac"; text = "#1e1e2e"; };
           activeWorkspace   = { background = "#313244"; border = "#313244"; text = "#cdd6f4"; };
           inactiveWorkspace = { background = "#1e1e2e"; border = "#1e1e2e"; text = "#585b70"; };
           urgentWorkspace   = { background = "#f38ba8"; border = "#f38ba8"; text = "#1e1e2e"; };
@@ -48,7 +49,7 @@
       }];
 
       colors = {
-        focused         = { border = "#89b4fa"; background = "#89b4fa"; text = "#1e1e2e"; indicator = "#f5e0dc"; childBorder = "#89b4fa"; };
+        focused         = { border = "#eba0ac"; background = "#eba0ac"; text = "#1e1e2e"; indicator = "#f5e0dc"; childBorder = "#eba0ac"; };
         unfocused       = { border = "#313244"; background = "#1e1e2e"; text = "#cdd6f4"; indicator = "#313244"; childBorder = "#313244"; };
         focusedInactive = { border = "#313244"; background = "#313244"; text = "#cdd6f4"; indicator = "#313244"; childBorder = "#313244"; };
         urgent          = { border = "#f38ba8"; background = "#f38ba8"; text = "#1e1e2e"; indicator = "#f38ba8"; childBorder = "#f38ba8"; };
@@ -122,7 +123,7 @@
     * {
       bg:     #1e1e2e;
       fg:     #cdd6f4;
-      accent: #89b4fa;
+      accent: #eba0ac;
       background-color: transparent;
       text-color: @fg;
     }
@@ -209,7 +210,7 @@
     [global]
     background = "#1e1e2e"
     foreground = "#cdd6f4"
-    frame_color = "#89b4fa"
+    frame_color = "#eba0ac"
     font = monospace 10
     corner_radius = 8
     offset = 10x10
@@ -226,20 +227,20 @@
 
   # Config xsettingsd (démarré par i3)
   xdg.configFile."xsettingsd/xsettingsd.conf".text = ''
-    Net/ThemeName "Catppuccin-Mocha-Standard-Blue-Dark"
+    Net/ThemeName "Catppuccin-Mocha-Standard-Maroon-Dark"
     Net/IconThemeName "Papirus-Dark"
   '';
 
   # Thème GTK (sans dconf pour éviter l'erreur D-Bus hors session)
   xdg.configFile."gtk-3.0/settings.ini".text = ''
     [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
+    gtk-theme-name=Catppuccin-Mocha-Standard-Maroon-Dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-application-prefer-dark-theme=true
   '';
   xdg.configFile."gtk-4.0/settings.ini".text = ''
     [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
+    gtk-theme-name=Catppuccin-Mocha-Standard-Maroon-Dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-application-prefer-dark-theme=true
   '';
@@ -260,7 +261,7 @@
       color1  = "#f38ba8"; color9  = "#f38ba8";
       color2  = "#a6e3a1"; color10 = "#a6e3a1";
       color3  = "#f9e2af"; color11 = "#f9e2af";
-      color4  = "#89b4fa"; color12 = "#89b4fa";
+      color4  = "#eba0ac"; color12 = "#eba0ac";
       color5  = "#f5c2e7"; color13 = "#f5c2e7";
       color6  = "#94e2d5"; color14 = "#94e2d5";
       color7  = "#bac2de"; color15 = "#a6adc8";
