@@ -50,6 +50,11 @@
     brave
   ];
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   # i3lock — authentification PAM
   security.pam.services.i3lock = {};
 

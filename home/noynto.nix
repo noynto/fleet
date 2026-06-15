@@ -22,7 +22,7 @@
       menu = "rofi -show drun -theme ~/.config/rofi/catppuccin-mocha.rasi";
 
       fonts = {
-        names = [ "monospace" ];
+        names = [ "JetBrainsMono Nerd Font" ];
         size = 10.0;
       };
 
@@ -35,7 +35,7 @@
 
       bars = [{
         statusCommand = "${pkgs.i3status}/bin/i3status";
-        fonts = { names = [ "monospace" ]; size = 10.0; };
+        fonts = { names = [ "JetBrainsMono Nerd Font" ]; size = 10.0; };
         colors = {
           background = "#1e1e2e";
           statusline = "#cdd6f4";
@@ -249,6 +249,7 @@
   programs.kitty = {
     enable = true;
     settings = {
+      font_family          = "JetBrainsMono Nerd Font";
       font_size            = "11.0";
       background           = "#1e1e2e";
       foreground           = "#cdd6f4";
