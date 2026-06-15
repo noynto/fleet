@@ -50,6 +50,17 @@
     brave
   ];
 
+  # Accélération matérielle GPU Intel UHD 600
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+  environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
+
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
