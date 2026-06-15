@@ -99,5 +99,9 @@
   # Fermeture couvercle → hibernation
   services.logind.lidSwitch = "hibernate";
 
+  # Reprise depuis hibernation
+  boot.resumeDevice = "/dev/disk/by-uuid/eb9d1cec-9b90-45fe-9e88-bcc9cbe5e905";
+  boot.kernelParams = [ "resume_offset=28905472" ];
+
   system.stateVersion = "25.05";
 }
