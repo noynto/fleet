@@ -37,7 +37,7 @@
     shell = pkgs.bash;
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     openssh.authorizedKeys.keys = [
-      # ajouter ta clé publique ici : ssh-ed25519 AAAA...
+      "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBADHFTa0eudPjpW+lEYMr0Q8ETXLG5jOT+MBMNZogHxKDhg+exu/gB6E6Lc4CxRLIfnyHDWsXKw1JTSpbFkwXatxWQCR4lmDC0kewW6Mp0/I0oVzpco3b8KofK01sKPewYLsgBbyNIxAyFZg6LXsyWmOXM4zIJcsJ0fCY/UVGboO8GSviA== noynto@baldur"
     ];
   };
 
