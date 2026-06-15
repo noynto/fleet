@@ -17,7 +17,7 @@
     config = rec {
       modifier = "Mod4";
       terminal = "kitty";
-      menu = "rofi -show drun";
+      menu = "rofi -show drun -theme ~/.config/rofi/catppuccin-mocha.rasi";
 
       fonts = {
         names = [ "monospace" ];
@@ -55,7 +55,7 @@
       keybindings = {
         # Essentiels
         "${modifier}+Return"      = "exec kitty";
-        "${modifier}+d"           = "exec rofi -show drun";
+        "${modifier}+d"           = "exec rofi -show drun -theme ~/.config/rofi/catppuccin-mocha.rasi";
         "${modifier}+Shift+q"     = "kill";
         "${modifier}+Shift+r"     = "restart";
         "${modifier}+Shift+e"     = "exec i3-nagbar -t warning -m 'Quitter i3 ?' -B 'Oui' 'i3-msg exit'";
@@ -114,45 +114,43 @@
       show-icons = true;
       drun-display-format = "{name}";
     };
-    theme = let
-      c = config.lib.formats.rasi.mkLiteral;
-    in {
-      "*" = {
-        bg     = c "#1e1e2e";
-        fg     = c "#cdd6f4";
-        accent = c "#89b4fa";
-        urgent = c "#f38ba8";
-        background-color = c "transparent";
-        text-color       = c "@fg";
-      };
-      "window" = {
-        background-color = c "@bg";
-        border           = c "2px solid @accent";
-        border-radius    = c "8px";
-        padding          = c "12px";
-        width            = c "600px";
-      };
-      "inputbar" = {
-        background-color = c "#313244";
-        border-radius    = c "6px";
-        padding          = c "8px 12px";
-        margin           = c "0 0 8px 0";
-      };
-      "entry" = {
-        background-color = c "transparent";
-        text-color       = c "@fg";
-      };
-      "element selected" = {
-        background-color = c "@accent";
-        text-color       = c "#1e1e2e";
-        border-radius    = c "4px";
-      };
-      "element-text" = {
-        background-color = c "transparent";
-        text-color       = c "inherit";
-      };
-    };
   };
+
+  xdg.configFile."rofi/catppuccin-mocha.rasi".text = ''
+    * {
+      bg:     #1e1e2e;
+      fg:     #cdd6f4;
+      accent: #89b4fa;
+      background-color: transparent;
+      text-color: @fg;
+    }
+    window {
+      background-color: @bg;
+      border:           2px solid @accent;
+      border-radius:    8px;
+      padding:          12px;
+      width:            600px;
+    }
+    inputbar {
+      background-color: #313244;
+      border-radius:    6px;
+      padding:          8px 12px;
+      margin:           0 0 8px 0;
+    }
+    entry {
+      background-color: transparent;
+      text-color:       @fg;
+    }
+    element selected {
+      background-color: @accent;
+      text-color:       #1e1e2e;
+      border-radius:    4px;
+    }
+    element-text {
+      background-color: transparent;
+      text-color:       inherit;
+    }
+  '';
 
   # Barre de statut
   programs.i3status = {
