@@ -114,7 +114,7 @@
     ];
   };
 
-  services.logind.settings.Login.HandleLidSwitch = "suspend";
+  services.logind.lidSwitch = "suspend";
 
   services.earlyoom = {
     enable = true;
