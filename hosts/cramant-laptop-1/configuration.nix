@@ -59,6 +59,11 @@
     BackgroundModeEnabled    = false;
     TranslateEnabled         = false;
     SpellCheckServiceEnabled = false;
+
+    # Extensions forcées
+    ExtensionInstallForcelist = [
+      "nngceckbapebfimnlniiiahkandclblb;https://clients2.google.com/service/update2/crx"
+    ];
   };
 
   services.openssh = {
