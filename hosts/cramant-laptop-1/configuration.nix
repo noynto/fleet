@@ -42,6 +42,7 @@
   environment.systemPackages = with pkgs; [
     brave
     librecad
+    rustdesk
   ];
 
   environment.etc."brave/policies/managed/policy.json".text = builtins.toJSON {
