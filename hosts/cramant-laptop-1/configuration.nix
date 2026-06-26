@@ -44,6 +44,8 @@
     brave
     librecad
     rustdesk
+    arc-theme
+    papirus-icon-theme
   ];
 
   environment.etc."brave/policies/managed/policy.json".text = builtins.toJSON {
