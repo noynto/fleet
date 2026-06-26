@@ -24,9 +24,6 @@
     desktopManager.xfce.enable = true;
   };
 
-  # Désactiver les extras XFCE non nécessaires
-  services.tumbler.enable = false;
-
   services.displayManager.autoLogin = {
     enable = true;
     user = "vsugot";
@@ -44,6 +41,24 @@
   environment.systemPackages = with pkgs; [
     brave
   ];
+
+  environment.etc."brave/policies/managed/policy.json".text = builtins.toJSON {
+    # Moteur de recherche
+    DefaultSearchProviderEnabled   = true;
+    DefaultSearchProviderName      = "DuckDuckGo";
+    DefaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
+    DefaultSearchProviderSuggestURL = "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
+
+    # Désactiver Rewards et Wallet (crypto)
+    BraveRewardsDisabled = true;
+    BraveWalletDisabled  = true;
+
+    # Désactiver les fonctions superflues
+    MetricsReportingEnabled  = false;
+    BackgroundModeEnabled    = false;
+    TranslateEnabled         = false;
+    SpellCheckServiceEnabled = false;
+  };
 
   services.openssh = {
     enable = true;
