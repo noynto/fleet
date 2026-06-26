@@ -27,6 +27,11 @@
   # Désactiver les extras XFCE non nécessaires
   services.tumbler.enable = false;
 
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "vsugot";
+  };
+
   users.users.vsugot = {
     isNormalUser = true;
     shell = pkgs.bash;
@@ -58,12 +63,7 @@
   };
 
   hardware.cpu.amd.updateMicrocode = true;
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      libva-mesa-driver
-    ];
-  };
+  hardware.graphics.enable = true;
 
   zramSwap.enable = true;
   boot.kernel.sysctl."vm.swappiness" = 10;
