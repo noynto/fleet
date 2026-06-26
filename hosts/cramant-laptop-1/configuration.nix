@@ -1,0 +1,91 @@
+{ config, pkgs, ... }:
+
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  nixpkgs.config.allowUnfree = true;
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "cramant-laptop-1";
+  networking.networkmanager.enable = true;
+
+  time.timeZone = "Europe/Paris";
+  i18n.defaultLocale = "fr_FR.UTF-8";
+  console.keyMap = "fr";
+
+  services.xserver = {
+    enable = true;
+    xkb.layout = "fr";
+    displayManager.lightdm.enable = true;
+    desktopManager.xfce.enable = true;
+  };
+
+  # Désactiver les extras XFCE non nécessaires
+  services.tumbler.enable = false;
+
+  users.users.vsugot = {
+    isNormalUser = true;
+    shell = pkgs.bash;
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    openssh.authorizedKeys.keys = [
+      "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBADHFTa0eudPjpW+lEYMr0Q8ETXLG5jOT+MBMNZogHxKDhg+exu/gB6E6Lc4CxRLIfnyHDWsXKw1JTSpbFkwXatxWQCR4lmDC0kewW6Mp0/I0oVzpco3b8KofK01sKPewYLsgBbyNIxAyFZg6LXsyWmOXM4zIJcsJ0fCY/UVGboO8GSviA== noynto@baldur"
+    ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    brave
+  ];
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      libva-mesa-driver
+    ];
+  };
+
+  zramSwap.enable = true;
+  boot.kernel.sysctl."vm.swappiness" = 10;
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC  = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_AC  = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      WIFI_PWR_ON_AC  = "off";
+      WIFI_PWR_ON_BAT = "on";
+    };
+  };
+
+  services.logind.settings.Login.HandleLidSwitch = "hibernate";
+
+  # À renseigner après nixos-generate-config sur la machine :
+  # boot.resumeDevice = "/dev/disk/by-uuid/...";
+  # boot.kernelParams = [ "resume_offset=..." ];
+  # swapDevices = [{ device = "/swapfile"; size = ...; }];
+
+  system.stateVersion = "25.05";
+}

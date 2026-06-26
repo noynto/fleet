@@ -42,6 +42,19 @@
             }
           ];
         };
+
+        cramant-laptop-1 = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/cramant-laptop-1/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.vsugot = import ./home/vsugot.nix;
+            }
+          ];
+        };
       };
     };
 }
