@@ -43,7 +43,7 @@
     git
     brave
     librecad
-arc-theme
+    arc-theme
     papirus-icon-theme
     libreoffice-still
     hunspellDicts.fr-any
