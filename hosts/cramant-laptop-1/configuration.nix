@@ -111,6 +111,17 @@
   # boot.kernelParams = [ "resume_offset=..." ];
   # swapDevices = [{ device = "/swapfile"; size = ...; }];
 
+  services.earlyoom = {
+    enable = true;
+    freeMemThreshold = 5;
+    freeSwapThreshold = 10;
+  };
+
+  services.journald.extraConfig = ''
+    SystemMaxUse=200M
+    MaxRetentionSec=7day
+  '';
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.05";
