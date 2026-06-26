@@ -104,12 +104,7 @@
     };
   };
 
-  services.logind.settings.Login.HandleLidSwitch = "hibernate";
-
-  # À renseigner après nixos-generate-config sur la machine :
-  # boot.resumeDevice = "/dev/disk/by-uuid/...";
-  # boot.kernelParams = [ "resume_offset=..." ];
-  # swapDevices = [{ device = "/swapfile"; size = ...; }];
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
 
   services.earlyoom = {
     enable = true;
