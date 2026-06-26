@@ -115,6 +115,8 @@ arc-theme
     ];
   };
 
+  services.tailscale.enable = true;
+
   services.logind.lidSwitch = "suspend";
 
   services.earlyoom = {
