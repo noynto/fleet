@@ -47,6 +47,7 @@ arc-theme
     papirus-icon-theme
     libreoffice-still
     hunspellDicts.fr-any
+    x11vnc
   ];
 
   environment.etc."brave/policies/managed/policy.json".text = builtins.toJSON {
