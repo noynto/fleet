@@ -40,6 +40,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    git
     brave
     librecad
     rustdesk
