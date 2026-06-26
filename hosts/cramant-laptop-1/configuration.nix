@@ -105,6 +105,8 @@
     };
   };
 
+  services.printing.enable = true;
+
   services.logind.settings.Login.HandleLidSwitch = "suspend";
 
   services.earlyoom = {
