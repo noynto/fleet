@@ -105,7 +105,14 @@
     };
   };
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      gutenprint
+      epson-escpr
+      epson-escpr2
+    ];
+  };
 
   services.logind.settings.Login.HandleLidSwitch = "suspend";
 
