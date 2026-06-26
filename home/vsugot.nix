@@ -10,10 +10,21 @@
     iconTheme.name = "Papirus";
   };
 
-  xdg.configFile."autostart/xfce4-screensaver.desktop".text = ''
-    [Desktop Entry]
-    Hidden=true
-  '';
+  xdg.configFile."xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml" = {
+    force = true;
+    text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfce4-screensaver" version="1.0">
+        <property name="saver" type="empty">
+          <property name="enabled" type="bool" value="false"/>
+          <property name="mode" type="int" value="0"/>
+        </property>
+        <property name="lock" type="empty">
+          <property name="enabled" type="bool" value="false"/>
+        </property>
+      </channel>
+    '';
+  };
 
   xdg.configFile."xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" = {
     force = true;
