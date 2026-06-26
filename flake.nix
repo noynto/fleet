@@ -4,13 +4,15 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -43,7 +45,7 @@
           ];
         };
 
-        cramant-laptop-1 = nixpkgs.lib.nixosSystem {
+        cramant-laptop-1 = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/cramant-laptop-1/configuration.nix
