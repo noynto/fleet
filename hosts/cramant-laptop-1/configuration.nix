@@ -41,6 +41,7 @@
 
   environment.systemPackages = with pkgs; [
     brave
+    librecad
   ];
 
   environment.etc."brave/policies/managed/policy.json".text = builtins.toJSON {
