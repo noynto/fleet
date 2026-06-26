@@ -31,6 +31,7 @@
 
   users.users.vsugot = {
     isNormalUser = true;
+    description = "Véronique Sugot";
     shell = pkgs.bash;
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     openssh.authorizedKeys.keys = [
