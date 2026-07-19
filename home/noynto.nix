@@ -190,9 +190,11 @@ in
   # Barre de statut
   programs.i3status = {
     enable = true;
+    enableDefault = false;
     general = {
       colors = true;
       interval = 5;
+      output_format  = "i3bar";
       color_good     = "#a7c080";
       color_degraded = "#dbbc7f";
       color_bad      = "#e67e80";
@@ -201,7 +203,7 @@ in
       "wireless _first_" = {
         position = 1;
         settings = {
-          format_up   = "W: %essid %ip";
+          format_up   = "W: %essid";
           format_down = "W: off";
         };
       };
@@ -217,20 +219,19 @@ in
       "volume master" = {
         position = 3;
         settings = {
-          format        = "Vol: %volume";
-          format_muted  = "Vol: muet";
-          device        = "pulse";
+          format       = "Vol: %volume";
+          format_muted = "Vol: muet";
+          device       = "pulse";
         };
       };
-
       "disk /" = {
         position = 4;
-        settings.format = "/ %avail";
+        settings.format = "Disk: %avail";
       };
       "memory" = {
         position = 5;
         settings = {
-          format            = "RAM: %used/%total";
+          format             = "RAM: %used/%total";
           threshold_degraded = "1G";
         };
       };
