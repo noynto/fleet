@@ -214,23 +214,32 @@ in
           status_full = "✓";
         };
       };
-      "disk /" = {
+      "volume master" = {
         position = 3;
+        settings = {
+          format        = "Vol: %volume";
+          format_muted  = "Vol: muet";
+          device        = "pulse";
+        };
+      };
+
+      "disk /" = {
+        position = 4;
         settings.format = "/ %avail";
       };
       "memory" = {
-        position = 4;
+        position = 5;
         settings = {
           format            = "RAM: %used/%total";
           threshold_degraded = "1G";
         };
       };
       "load" = {
-        position = 5;
+        position = 6;
         settings.format = "CPU: %1min";
       };
       "tztime local" = {
-        position = 6;
+        position = 7;
         settings.format = "%d/%m/%Y %H:%M";
       };
     };
