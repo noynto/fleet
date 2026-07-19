@@ -1,5 +1,31 @@
 { config, pkgs, ... }:
 
+let
+  i3help = pkgs.writeShellScriptBin "i3help" ''
+    echo "Super+Return       Terminal (kitty)
+Super+d            Lanceur (rofi)
+Super+Shift+q      Fermer fenêtre
+Super+Shift+r      Redémarrer i3
+Super+Shift+e      Quitter i3
+Super+Shift+x      Verrouiller écran
+─────────────────────────────────
+Super+h/j/k/l      Focus gauche/bas/haut/droite
+Super+Shift+h/j/k/l  Déplacer fenêtre
+─────────────────────────────────
+Super+f            Plein écran
+Super+s            Layout stacking
+Super+w            Layout tabbed
+Super+e            Layout split
+Super+b            Split horizontal
+Super+v            Split vertical
+Super+Shift+Space  Floating toggle
+Super+Space        Focus mode toggle
+─────────────────────────────────
+Super+1-5          Aller au workspace
+Super+Shift+1-5    Déplacer vers workspace" | rofi -dmenu -i -p " Bindings i3" -theme ~/.config/rofi/everforest.rasi
+  '';
+in
+
 {
   home.username = "noynto";
   home.homeDirectory = "/home/noynto";
@@ -97,6 +123,9 @@
         "${modifier}+Shift+3" = "move container to workspace number 3";
         "${modifier}+Shift+4" = "move container to workspace number 4";
         "${modifier}+Shift+5" = "move container to workspace number 5";
+
+        # Aide
+        "${modifier}+F1"          = "exec i3help";
 
         # Touches média
         "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
@@ -280,6 +309,7 @@
     eza
     feh
     i3lock
+    i3help
     brightnessctl
     networkmanagerapplet
     picom
