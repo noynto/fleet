@@ -177,7 +177,7 @@
       "battery all" = {
         position = 2;
         settings = {
-          format      = "Bat: %percentage %remaining";
+          format      = "%status Bat: %percentage %remaining";
           status_chr  = "↑";
           status_bat  = "↓";
           status_full = "✓";
