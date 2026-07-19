@@ -23,12 +23,6 @@
   # Clavier console
   console.keyMap = "fr";
 
-  # Xorg (XWayland) + clavier graphique
-  services.xserver = {
-    enable = true;
-    xkb.layout = "fr";
-  };
-
   # Display manager
   services.displayManager.sddm = {
     enable = true;
@@ -38,7 +32,7 @@
   # Hyprland
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    xwayland.enable = false;
   };
 
   # Utilisateur
@@ -93,7 +87,6 @@
   services.pipewire = {
     enable = true;
     alsa.enable = true;
-    alsa.support32Bit = true;
     pulse.enable = true;
   };
 

@@ -95,7 +95,7 @@
         "$mod, Q, killactive"
         "$mod, F, fullscreen"
         "$mod SHIFT, space, togglefloating"
-        "$mod SHIFT, E, exec, hyprctl dispatch exit"
+        "$mod SHIFT, E, exit"
         "$mod SHIFT, X, exec, hyprlock"
 
         # Focus (vim-style)
