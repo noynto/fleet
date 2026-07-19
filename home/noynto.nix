@@ -39,6 +39,8 @@ in
     };
   };
 
+  xsession.scriptPath = ".xinitrc";
+
   # i3
   xsession.windowManager.i3 = {
     enable = true;

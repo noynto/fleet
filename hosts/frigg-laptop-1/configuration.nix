@@ -27,8 +27,24 @@
   services.xserver = {
     enable = true;
     xkb.layout = "fr";
-    displayManager.lightdm.enable = true;
     windowManager.i3.enable = true;
+  };
+
+  # Display manager — greetd + tuigreet (Everforest Dark)
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = ''
+          ${pkgs.greetd.tuigreet}/bin/tuigreet \
+            --time \
+            --remember \
+            --theme "border=#a7c080;text=#d3c6aa;prompt=#d3c6aa;action=#a7c080;button=#a7c080;container=#2d353b;input=#d3c6aa" \
+            --cmd startx
+        '';
+        user = "greeter";
+      };
+    };
   };
 
   # Utilisateur
