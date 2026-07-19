@@ -24,11 +24,11 @@
     in
     {
       nixosConfigurations = {
-        frigg-laptop-1 = nixpkgs.lib.nixosSystem {
+        frigg-laptop-1 = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/frigg-laptop-1/configuration.nix
-            home-manager.nixosModules.home-manager
+            home-manager-stable.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
