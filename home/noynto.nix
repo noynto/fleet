@@ -19,7 +19,7 @@
     config = rec {
       modifier = "Mod4";
       terminal = "kitty";
-      menu = "rofi -show drun -theme ~/.config/rofi/catppuccin-mocha.rasi";
+      menu = "rofi -show drun -theme ~/.config/rofi/everforest.rasi";
 
       fonts = {
         names = [ "JetBrainsMono Nerd Font" ];
@@ -31,38 +31,38 @@
         { command = "picom --daemon";  notification = false; }
         { command = "nm-applet";       notification = false; }
         { command = "dunst";           notification = false; }
-        { command = "xsetroot -solid '#1e1e2e'"; notification = false; }
+        { command = "xsetroot -solid '#2d353b'"; notification = false; }
       ];
 
       bars = [{
         statusCommand = "${pkgs.i3status}/bin/i3status";
         fonts = { names = [ "JetBrainsMono Nerd Font" ]; size = 10.0; };
         colors = {
-          background = "#1e1e2e";
-          statusline = "#cdd6f4";
-          separator  = "#585b70";
-          focusedWorkspace  = { background = "#eba0ac"; border = "#eba0ac"; text = "#1e1e2e"; };
-          activeWorkspace   = { background = "#313244"; border = "#313244"; text = "#cdd6f4"; };
-          inactiveWorkspace = { background = "#1e1e2e"; border = "#1e1e2e"; text = "#585b70"; };
-          urgentWorkspace   = { background = "#f38ba8"; border = "#f38ba8"; text = "#1e1e2e"; };
+          background = "#2d353b";
+          statusline = "#d3c6aa";
+          separator  = "#475258";
+          focusedWorkspace  = { background = "#a7c080"; border = "#a7c080"; text = "#2d353b"; };
+          activeWorkspace   = { background = "#343f44"; border = "#343f44"; text = "#d3c6aa"; };
+          inactiveWorkspace = { background = "#2d353b"; border = "#2d353b"; text = "#859289"; };
+          urgentWorkspace   = { background = "#e67e80"; border = "#e67e80"; text = "#2d353b"; };
         };
       }];
 
       colors = {
-        focused         = { border = "#eba0ac"; background = "#eba0ac"; text = "#1e1e2e"; indicator = "#f5e0dc"; childBorder = "#eba0ac"; };
-        unfocused       = { border = "#313244"; background = "#1e1e2e"; text = "#cdd6f4"; indicator = "#313244"; childBorder = "#313244"; };
-        focusedInactive = { border = "#313244"; background = "#313244"; text = "#cdd6f4"; indicator = "#313244"; childBorder = "#313244"; };
-        urgent          = { border = "#f38ba8"; background = "#f38ba8"; text = "#1e1e2e"; indicator = "#f38ba8"; childBorder = "#f38ba8"; };
+        focused         = { border = "#a7c080"; background = "#a7c080"; text = "#2d353b"; indicator = "#83c092"; childBorder = "#a7c080"; };
+        unfocused       = { border = "#343f44"; background = "#2d353b"; text = "#d3c6aa"; indicator = "#343f44"; childBorder = "#343f44"; };
+        focusedInactive = { border = "#343f44"; background = "#343f44"; text = "#d3c6aa"; indicator = "#343f44"; childBorder = "#343f44"; };
+        urgent          = { border = "#e67e80"; background = "#e67e80"; text = "#2d353b"; indicator = "#e67e80"; childBorder = "#e67e80"; };
       };
 
       keybindings = {
         # Essentiels
         "${modifier}+Return"      = "exec kitty";
-        "${modifier}+d"           = "exec rofi -show drun -theme ~/.config/rofi/catppuccin-mocha.rasi";
+        "${modifier}+d"           = "exec rofi -show drun -theme ~/.config/rofi/everforest.rasi";
         "${modifier}+Shift+q"     = "kill";
         "${modifier}+Shift+r"     = "restart";
         "${modifier}+Shift+e"     = "exec i3-nagbar -t warning -m 'Quitter i3 ?' -B 'Oui' 'i3-msg exit'";
-        "${modifier}+Shift+x"     = "exec i3lock -c 1e1e2e";
+        "${modifier}+Shift+x"     = "exec i3lock -c 2d353b";
 
         # Focus (vim-style)
         "${modifier}+h" = "focus left";
@@ -119,11 +119,11 @@
     };
   };
 
-  xdg.configFile."rofi/catppuccin-mocha.rasi".text = ''
+  xdg.configFile."rofi/everforest.rasi".text = ''
     * {
-      bg:     #1e1e2e;
-      fg:     #cdd6f4;
-      accent: #eba0ac;
+      bg:     #2d353b;
+      fg:     #d3c6aa;
+      accent: #a7c080;
       background-color: transparent;
       text-color: @fg;
     }
@@ -136,7 +136,7 @@
       width:            600px;
     }
     inputbar {
-      background-color: #313244;
+      background-color: #343f44;
       border-radius:    6px;
       padding:          8px 12px;
       margin:           0 0 8px 0;
@@ -147,7 +147,7 @@
     }
     element selected {
       background-color: @accent;
-      text-color:       #1e1e2e;
+      text-color:       #2d353b;
       border-radius:    4px;
     }
     element-text {
@@ -162,9 +162,9 @@
     general = {
       colors = true;
       interval = 5;
-      color_good     = "#a6e3a1";
-      color_degraded = "#f9e2af";
-      color_bad      = "#f38ba8";
+      color_good     = "#a7c080";
+      color_degraded = "#dbbc7f";
+      color_bad      = "#e67e80";
     };
     modules = {
       "wireless _first_" = {
@@ -208,9 +208,9 @@
   # Config dunst (démarré par i3)
   xdg.configFile."dunst/dunstrc".text = ''
     [global]
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
-    frame_color = "#eba0ac"
+    background = "#2d353b"
+    foreground = "#d3c6aa"
+    frame_color = "#a7c080"
     font = monospace 10
     corner_radius = 8
     offset = 10x10
@@ -220,58 +220,54 @@
     timeout = 5
 
     [urgency_critical]
-    background = "#f38ba8"
-    foreground = "#1e1e2e"
+    background = "#e67e80"
+    foreground = "#2d353b"
     timeout = 0
   '';
 
   # Config xsettingsd (démarré par i3)
   xdg.configFile."xsettingsd/xsettingsd.conf".text = ''
-    Net/ThemeName "Catppuccin-Mocha-Standard-Maroon-Dark"
     Net/IconThemeName "Papirus-Dark"
   '';
 
-  # Thème GTK (sans dconf pour éviter l'erreur D-Bus hors session)
+  # Thème GTK
   xdg.configFile."gtk-3.0/settings.ini".text = ''
     [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Maroon-Dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-application-prefer-dark-theme=true
   '';
   xdg.configFile."gtk-4.0/settings.ini".text = ''
     [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Maroon-Dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-application-prefer-dark-theme=true
   '';
 
-
-  # Terminal Kitty — Catppuccin Mocha
+  # Terminal Kitty — Everforest Dark
   programs.kitty = {
     enable = true;
     settings = {
       font_family          = "JetBrainsMono Nerd Font";
       font_size            = "11.0";
-      background           = "#1e1e2e";
-      foreground           = "#cdd6f4";
-      selection_background = "#585b70";
-      selection_foreground = "#cdd6f4";
-      cursor               = "#f5e0dc";
-      color0  = "#45475a"; color8  = "#585b70";
-      color1  = "#f38ba8"; color9  = "#f38ba8";
-      color2  = "#a6e3a1"; color10 = "#a6e3a1";
-      color3  = "#f9e2af"; color11 = "#f9e2af";
-      color4  = "#eba0ac"; color12 = "#eba0ac";
-      color5  = "#f5c2e7"; color13 = "#f5c2e7";
-      color6  = "#94e2d5"; color14 = "#94e2d5";
-      color7  = "#bac2de"; color15 = "#a6adc8";
+      background           = "#2d353b";
+      foreground           = "#d3c6aa";
+      selection_background = "#475258";
+      selection_foreground = "#d3c6aa";
+      cursor               = "#d3c6aa";
+      color0  = "#475258"; color8  = "#4f585e";
+      color1  = "#e67e80"; color9  = "#e67e80";
+      color2  = "#a7c080"; color10 = "#a7c080";
+      color3  = "#dbbc7f"; color11 = "#dbbc7f";
+      color4  = "#7fbbb3"; color12 = "#7fbbb3";
+      color5  = "#d699b6"; color13 = "#d699b6";
+      color6  = "#83c092"; color14 = "#83c092";
+      color7  = "#d3c6aa"; color15 = "#d3c6aa";
     };
   };
 
   programs.btop = {
     enable = true;
     settings = {
-      color_theme      = "catppuccin_mocha";
+      color_theme      = "everforest";
       theme_background = false;
       vim_keys         = true;
     };
@@ -289,7 +285,6 @@
     picom
     dunst
     xsettingsd
-    catppuccin-gtk
     papirus-icon-theme
   ];
 

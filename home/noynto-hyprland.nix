@@ -31,8 +31,8 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        "col.active_border" = "rgb(eba0ac)";
-        "col.inactive_border" = "rgb(313244)";
+        "col.active_border" = "rgb(a7c080)";
+        "col.inactive_border" = "rgb(343f44)";
         layout = "dwindle";
       };
 
@@ -45,7 +45,7 @@
         };
         shadow = {
           enabled = true;
-          color = "rgb(1e1e2e)";
+          color = "rgb(2d353b)";
         };
       };
 
@@ -91,7 +91,7 @@
 
       bind = [
         "$mod, Return, exec, kitty"
-        "$mod, D, exec, rofi -show drun -theme ~/.config/rofi/catppuccin-mocha.rasi"
+        "$mod, D, exec, rofi -show drun -theme ~/.config/rofi/everforest.rasi"
         "$mod, Q, killactive"
         "$mod, F, fullscreen"
         "$mod SHIFT, space, togglefloating"
@@ -202,9 +202,9 @@
       }
 
       window#waybar {
-        background-color: #1e1e2e;
-        color: #cdd6f4;
-        border-bottom: 2px solid #313244;
+        background-color: #2d353b;
+        color: #d3c6aa;
+        border-bottom: 2px solid #343f44;
       }
 
       .modules-left, .modules-center, .modules-right {
@@ -212,7 +212,7 @@
       }
 
       #workspaces button {
-        color: #585b70;
+        color: #859289;
         background: transparent;
         padding: 0 8px;
         border: none;
@@ -220,23 +220,23 @@
       }
 
       #workspaces button.active {
-        color: #1e1e2e;
-        background: #eba0ac;
+        color: #2d353b;
+        background: #a7c080;
       }
 
       #workspaces button:hover {
-        background: #313244;
-        color: #cdd6f4;
+        background: #343f44;
+        color: #d3c6aa;
       }
 
       #clock, #network, #battery, #memory, #cpu, #disk, #tray {
         padding: 0 12px;
-        color: #cdd6f4;
+        color: #d3c6aa;
       }
 
-      #battery.warning { color: #f9e2af; }
-      #battery.critical { color: #f38ba8; }
-      #clock { color: #eba0ac; font-weight: bold; }
+      #battery.warning { color: #dbbc7f; }
+      #battery.critical { color: #e67e80; }
+      #clock { color: #a7c080; font-weight: bold; }
     '';
   };
 
@@ -251,14 +251,14 @@
 
       background = [{
         monitor = "";
-        color = "rgb(1e1e2e)";
+        color = "rgb(2d353b)";
       }];
 
       label = [
         {
           monitor = "";
           text = "cmd[update:1000] echo \"$(date +'%H:%M')\"";
-          color = "rgb(cdd6f4)";
+          color = "rgb(d3c6aa)";
           font_size = 72;
           font_family = "JetBrainsMono Nerd Font";
           position = "0, 80";
@@ -268,7 +268,7 @@
         {
           monitor = "";
           text = "cmd[update:60000] echo \"$(date +'%A %d %B %Y')\"";
-          color = "rgb(a6adc8)";
+          color = "rgb(859289)";
           font_size = 18;
           font_family = "JetBrainsMono Nerd Font";
           position = "0, 0";
@@ -285,9 +285,9 @@
         valign = "center";
         dots_center = true;
         fade_on_empty = false;
-        font_color = "rgb(cdd6f4)";
-        inner_color = "rgb(313244)";
-        outer_color = "rgb(eba0ac)";
+        font_color = "rgb(d3c6aa)";
+        inner_color = "rgb(343f44)";
+        outer_color = "rgb(a7c080)";
         outline_thickness = 2;
         placeholder_text = "";
         shadow_passes = 0;
@@ -327,16 +327,16 @@
   # Mako (notifications)
   services.mako = {
     enable = true;
-    backgroundColor = "#1e1e2e";
-    textColor = "#cdd6f4";
-    borderColor = "#eba0ac";
+    backgroundColor = "#2d353b";
+    textColor = "#d3c6aa";
+    borderColor = "#a7c080";
     borderRadius = 8;
     defaultTimeout = 5000;
     font = "monospace 10";
     extraConfig = ''
       [urgency=critical]
-      background-color=#f38ba8
-      text-color=#1e1e2e
+      background-color=#e67e80
+      text-color=#2d353b
       default-timeout=0
     '';
   };
@@ -352,11 +352,11 @@
     };
   };
 
-  xdg.configFile."rofi/catppuccin-mocha.rasi".text = ''
+  xdg.configFile."rofi/everforest.rasi".text = ''
     * {
-      bg:     #1e1e2e;
-      fg:     #cdd6f4;
-      accent: #eba0ac;
+      bg:     #2d353b;
+      fg:     #d3c6aa;
+      accent: #a7c080;
       background-color: transparent;
       text-color: @fg;
     }
@@ -369,7 +369,7 @@
       width:            600px;
     }
     inputbar {
-      background-color: #313244;
+      background-color: #343f44;
       border-radius:    6px;
       padding:          8px 12px;
       margin:           0 0 8px 0;
@@ -380,7 +380,7 @@
     }
     element selected {
       background-color: @accent;
-      text-color:       #1e1e2e;
+      text-color:       #2d353b;
       border-radius:    4px;
     }
     element-text {
@@ -389,7 +389,7 @@
     }
   '';
 
-  # Fond d'écran (config minimale, à compléter avec un chemin d'image)
+  # Fond d'écran (à compléter avec un chemin d'image)
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     ipc = off
     splash = false
@@ -398,43 +398,41 @@
   # Thème GTK
   xdg.configFile."gtk-3.0/settings.ini".text = ''
     [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Maroon-Dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-application-prefer-dark-theme=true
   '';
   xdg.configFile."gtk-4.0/settings.ini".text = ''
     [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Maroon-Dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-application-prefer-dark-theme=true
   '';
 
-  # Terminal Kitty — Catppuccin Mocha
+  # Terminal Kitty — Everforest Dark
   programs.kitty = {
     enable = true;
     settings = {
       font_family          = "JetBrainsMono Nerd Font";
       font_size            = "11.0";
-      background           = "#1e1e2e";
-      foreground           = "#cdd6f4";
-      selection_background = "#585b70";
-      selection_foreground = "#cdd6f4";
-      cursor               = "#f5e0dc";
-      color0  = "#45475a"; color8  = "#585b70";
-      color1  = "#f38ba8"; color9  = "#f38ba8";
-      color2  = "#a6e3a1"; color10 = "#a6e3a1";
-      color3  = "#f9e2af"; color11 = "#f9e2af";
-      color4  = "#eba0ac"; color12 = "#eba0ac";
-      color5  = "#f5c2e7"; color13 = "#f5c2e7";
-      color6  = "#94e2d5"; color14 = "#94e2d5";
-      color7  = "#bac2de"; color15 = "#a6adc8";
+      background           = "#2d353b";
+      foreground           = "#d3c6aa";
+      selection_background = "#475258";
+      selection_foreground = "#d3c6aa";
+      cursor               = "#d3c6aa";
+      color0  = "#475258"; color8  = "#4f585e";
+      color1  = "#e67e80"; color9  = "#e67e80";
+      color2  = "#a7c080"; color10 = "#a7c080";
+      color3  = "#dbbc7f"; color11 = "#dbbc7f";
+      color4  = "#7fbbb3"; color12 = "#7fbbb3";
+      color5  = "#d699b6"; color13 = "#d699b6";
+      color6  = "#83c092"; color14 = "#83c092";
+      color7  = "#d3c6aa"; color15 = "#d3c6aa";
     };
   };
 
   programs.btop = {
     enable = true;
     settings = {
-      color_theme      = "catppuccin_mocha";
+      color_theme      = "everforest";
       theme_background = false;
       vim_keys         = true;
     };
@@ -451,7 +449,6 @@
     grim
     slurp
     hyprpaper
-    catppuccin-gtk
     papirus-icon-theme
   ];
 
