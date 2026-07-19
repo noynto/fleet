@@ -203,7 +203,7 @@ in
       "wireless _first_" = {
         position = 1;
         settings = {
-          format_up   = "W: %essid";
+          format_up   = "W: %essid %ip";
           format_down = "W: off";
         };
       };
