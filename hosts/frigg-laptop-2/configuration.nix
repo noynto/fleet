@@ -23,12 +23,22 @@
   # Clavier console
   console.keyMap = "fr";
 
-  # Xorg + clavier graphique
+  # Xorg (XWayland) + clavier graphique
   services.xserver = {
     enable = true;
     xkb.layout = "fr";
-    displayManager.lightdm.enable = true;
-    windowManager.i3.enable = true;
+  };
+
+  # Display manager
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  # Hyprland
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
   };
 
   # Utilisateur
@@ -56,11 +66,7 @@
   # Accélération matérielle GPU AMD Radeon
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [
-      amdvlk
-      rocm-opencl-icd
-      rocm-opencl-runtime
-    ];
+    extraPackages = with pkgs; [ amdvlk ];
   };
   environment.sessionVariables.LIBVA_DRIVER_NAME = "radeonsi";
 
@@ -69,8 +75,8 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # i3lock — authentification PAM
-  security.pam.services.i3lock = {};
+  # hyprlock — authentification PAM
+  security.pam.services.hyprlock = {};
 
   # SSH
   services.openssh = {
@@ -124,5 +130,5 @@
   # boot.resumeDevice = "/dev/disk/by-uuid/XXXX";
   # boot.kernelParams = [ "resume_offset=XXXX" ];
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }

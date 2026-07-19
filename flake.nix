@@ -37,15 +37,15 @@
           ];
         };
 
-        frigg-laptop-2 = nixpkgs.lib.nixosSystem {
+        frigg-laptop-2 = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/frigg-laptop-2/configuration.nix
-            home-manager.nixosModules.home-manager
+            home-manager-stable.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.noynto = import ./home/noynto.nix;
+              home-manager.users.noynto = import ./home/noynto-hyprland.nix;
             }
           ];
         };
