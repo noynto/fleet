@@ -60,12 +60,8 @@
   # Microcode AMD
   hardware.cpu.amd.updateMicrocode = true;
 
-  # Accélération matérielle GPU AMD Radeon
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [ amdvlk ];
-  };
-  environment.sessionVariables.LIBVA_DRIVER_NAME = "radeonsi";
+  # Accélération matérielle GPU AMD Radeon (RADV/Mesa par défaut)
+  hardware.graphics.enable = true;
 
   # Fonts
   fonts.packages = with pkgs; [
