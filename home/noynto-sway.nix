@@ -13,124 +13,136 @@
     };
   };
 
-  # Hyprland
-  wayland.windowManager.hyprland = {
+  # Sway
+  wayland.windowManager.sway = {
     enable = true;
-    settings = {
-      monitor = ",preferred,auto,auto";
+    xwayland = false;
+    wrapperFeatures.gtk = true;
 
-      env = [
-        "XCURSOR_SIZE,24"
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_TYPE,wayland"
-        "QT_QPA_PLATFORM,wayland"
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-      ];
+    config = rec {
+      modifier = "Mod4";
+      terminal = "kitty";
+      menu = "rofi -show drun -theme ~/.config/rofi/everforest.rasi";
 
-      general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        border_size = 2;
-        "col.active_border" = "rgb(a7c080)";
-        "col.inactive_border" = "rgb(343f44)";
-        layout = "dwindle";
+      fonts = {
+        names = [ "JetBrainsMono Nerd Font" ];
+        size = 10.0;
       };
 
-      decoration = {
-        rounding = 8;
-        blur = {
-          enabled = true;
-          size = 4;
-          passes = 2;
-        };
-        shadow = {
-          enabled = true;
-          color = "rgb(2d353b)";
-        };
-      };
-
-      animations = {
-        enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
-        ];
+      gaps = {
+        inner = 5;
+        outer = 5;
       };
 
       input = {
-        kb_layout = "fr";
-        follow_mouse = 1;
-        touchpad = {
-          natural_scroll = true;
-          disable_while_typing = true;
+        "type:keyboard" = {
+          xkb_layout = "fr";
+        };
+        "type:touchpad" = {
+          natural_scroll = "enabled";
+          tap = "enabled";
+          dwt = "enabled";
         };
       };
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
+      output = {
+        "*" = {
+          bg = "#2d353b solid_color";
+        };
       };
 
-      misc = {
-        force_default_wallpaper = 0;
-        disable_hyprland_logo = true;
-      };
-
-      "$mod" = "SUPER";
-
-      exec-once = [
-        "waybar"
-        "mako"
-        "nm-applet --indicator"
-        "hyprpaper"
+      startup = [
+        { command = "waybar"; }
+        { command = "mako"; }
+        { command = "nm-applet --indicator"; }
       ];
 
-      bind = [
-        "$mod, Return, exec, kitty"
-        "$mod, D, exec, rofi -show drun -theme ~/.config/rofi/everforest.rasi"
-        "$mod, Q, killactive"
-        "$mod, F, fullscreen"
-        "$mod SHIFT, space, togglefloating"
-        "$mod SHIFT, E, exit"
-        "$mod SHIFT, X, exec, hyprlock"
+      # Barre native désactivée, waybar la remplace
+      bars = [];
+
+      colors = {
+        focused         = { border = "#a7c080"; background = "#a7c080"; text = "#2d353b"; indicator = "#83c092"; childBorder = "#a7c080"; };
+        unfocused       = { border = "#343f44"; background = "#2d353b"; text = "#d3c6aa"; indicator = "#343f44"; childBorder = "#343f44"; };
+        focusedInactive = { border = "#343f44"; background = "#343f44"; text = "#d3c6aa"; indicator = "#343f44"; childBorder = "#343f44"; };
+        urgent          = { border = "#e67e80"; background = "#e67e80"; text = "#2d353b"; indicator = "#e67e80"; childBorder = "#e67e80"; };
+      };
+
+      keybindings = {
+        # Essentiels
+        "${modifier}+Return"      = "exec kitty";
+        "${modifier}+d"           = "exec rofi -show drun -theme ~/.config/rofi/everforest.rasi";
+        "${modifier}+Shift+q"     = "kill";
+        "${modifier}+Shift+r"     = "reload";
+        "${modifier}+Shift+e"     = "exec swaynag -t warning -m 'Quitter Sway ?' -B 'Oui' 'swaymsg exit'";
+        "${modifier}+Shift+x"     = "exec swaylock -c 2d353b";
 
         # Focus (vim-style)
-        "$mod, H, movefocus, l"
-        "$mod, L, movefocus, r"
-        "$mod, K, movefocus, u"
-        "$mod, J, movefocus, d"
+        "${modifier}+h" = "focus left";
+        "${modifier}+j" = "focus down";
+        "${modifier}+k" = "focus up";
+        "${modifier}+l" = "focus right";
 
         # Déplacement
-        "$mod SHIFT, H, movewindow, l"
-        "$mod SHIFT, L, movewindow, r"
-        "$mod SHIFT, K, movewindow, u"
-        "$mod SHIFT, J, movewindow, d"
+        "${modifier}+Shift+h" = "move left";
+        "${modifier}+Shift+j" = "move down";
+        "${modifier}+Shift+k" = "move up";
+        "${modifier}+Shift+l" = "move right";
+
+        # Layout
+        "${modifier}+f"           = "fullscreen toggle";
+        "${modifier}+s"           = "layout stacking";
+        "${modifier}+w"           = "layout tabbed";
+        "${modifier}+e"           = "layout toggle split";
+        "${modifier}+b"           = "split h";
+        "${modifier}+v"           = "split v";
+        "${modifier}+Shift+space" = "floating toggle";
+        "${modifier}+space"       = "focus mode_toggle";
 
         # Workspaces
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
-      ];
+        "${modifier}+1" = "workspace number 1";
+        "${modifier}+2" = "workspace number 2";
+        "${modifier}+3" = "workspace number 3";
+        "${modifier}+4" = "workspace number 4";
+        "${modifier}+5" = "workspace number 5";
+        "${modifier}+Shift+1" = "move container to workspace number 1";
+        "${modifier}+Shift+2" = "move container to workspace number 2";
+        "${modifier}+Shift+3" = "move container to workspace number 3";
+        "${modifier}+Shift+4" = "move container to workspace number 4";
+        "${modifier}+Shift+5" = "move container to workspace number 5";
 
-      bindel = [
-        ", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
-        ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
-        ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
-        ", XF86MonBrightnessUp, exec, brightnessctl s +10%"
-        ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
-      ];
+        # Touches média
+        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute"        = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86MonBrightnessUp"  = "exec brightnessctl s +10%";
+        "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
+      };
     };
+  };
+
+  # Verrouillage d'écran
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      color = "2d353b";
+      inside-color = "343f44";
+      ring-color = "a7c080";
+      text-color = "d3c6aa";
+      line-color = "2d353b";
+      show-failed-attempts = true;
+    };
+  };
+
+  # Suspend automatique + verrouillage à l'inactivité
+  services.swayidle = {
+    enable = true;
+    events = {
+      before-sleep = "swaylock";
+    };
+    timeouts = [
+      { timeout = 300; command = "brightnessctl -s set 10%"; resumeCommand = "brightnessctl -r"; }
+      { timeout = 600; command = "swaylock"; }
+    ];
   };
 
   # Waybar
@@ -142,14 +154,13 @@
         position = "top";
         height = 32;
         spacing = 4;
-        modules-left = [ "hyprland/workspaces" ];
+        modules-left = [ "sway/workspaces" ];
         modules-center = [ "clock" ];
         modules-right = [ "network" "battery" "memory" "cpu" "disk" "tray" ];
 
-        "hyprland/workspaces" = {
-          format = "{id}";
-          on-click = "activate";
-          sort-by-number = true;
+        "sway/workspaces" = {
+          format = "{name}";
+          disable-scroll = true;
         };
 
         clock = {
@@ -219,7 +230,7 @@
         border-radius: 4px;
       }
 
-      #workspaces button.active {
+      #workspaces button.focused {
         color: #2d353b;
         background: #a7c080;
       }
@@ -238,90 +249,6 @@
       #battery.critical { color: #e67e80; }
       #clock { color: #a7c080; font-weight: bold; }
     '';
-  };
-
-  # Hyprlock
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      general = {
-        disable_loading_bar = true;
-        hide_cursor = true;
-      };
-
-      background = [{
-        monitor = "";
-        color = "rgb(2d353b)";
-      }];
-
-      label = [
-        {
-          monitor = "";
-          text = "cmd[update:1000] echo \"$(date +'%H:%M')\"";
-          color = "rgb(d3c6aa)";
-          font_size = 72;
-          font_family = "JetBrainsMono Nerd Font";
-          position = "0, 80";
-          halign = "center";
-          valign = "center";
-        }
-        {
-          monitor = "";
-          text = "cmd[update:60000] echo \"$(date +'%A %d %B %Y')\"";
-          color = "rgb(859289)";
-          font_size = 18;
-          font_family = "JetBrainsMono Nerd Font";
-          position = "0, 0";
-          halign = "center";
-          valign = "center";
-        }
-      ];
-
-      input-field = [{
-        monitor = "";
-        size = "250, 50";
-        position = "0, -100";
-        halign = "center";
-        valign = "center";
-        dots_center = true;
-        fade_on_empty = false;
-        font_color = "rgb(d3c6aa)";
-        inner_color = "rgb(343f44)";
-        outer_color = "rgb(a7c080)";
-        outline_thickness = 2;
-        placeholder_text = "";
-        shadow_passes = 0;
-      }];
-    };
-  };
-
-  # Hypridle
-  services.hypridle = {
-    enable = true;
-    settings = {
-      general = {
-        lock_cmd = "hyprlock";
-        before_sleep_cmd = "hyprlock";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-      };
-
-      listener = [
-        {
-          timeout = 300;
-          on-timeout = "brightnessctl -s set 10%";
-          on-resume = "brightnessctl -r";
-        }
-        {
-          timeout = 600;
-          on-timeout = "hyprlock";
-        }
-        {
-          timeout = 900;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-      ];
-    };
   };
 
   # Mako (notifications)
@@ -389,12 +316,6 @@
     }
   '';
 
-  # Fond d'écran (à compléter avec un chemin d'image)
-  xdg.configFile."hypr/hyprpaper.conf".text = ''
-    ipc = off
-    splash = false
-  '';
-
   # Thème GTK
   xdg.configFile."gtk-3.0/settings.ini".text = ''
     [Settings]
@@ -448,7 +369,6 @@
     wl-clipboard
     grim
     slurp
-    hyprpaper
     papirus-icon-theme
   ];
 

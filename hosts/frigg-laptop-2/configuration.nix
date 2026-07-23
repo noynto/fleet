@@ -29,8 +29,8 @@
     wayland.enable = true;
   };
 
-  # Hyprland
-  programs.hyprland = {
+  # Sway
+  programs.sway = {
     enable = true;
     xwayland.enable = false;
   };
@@ -39,7 +39,7 @@
   users.users.noynto = {
     isNormalUser = true;
     shell = pkgs.bash;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "docker" ];
     openssh.authorizedKeys.keys = [
       "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBADHFTa0eudPjpW+lEYMr0Q8ETXLG5jOT+MBMNZogHxKDhg+exu/gB6E6Lc4CxRLIfnyHDWsXKw1JTSpbFkwXatxWQCR4lmDC0kewW6Mp0/I0oVzpco3b8KofK01sKPewYLsgBbyNIxAyFZg6LXsyWmOXM4zIJcsJ0fCY/UVGboO8GSviA== noynto@baldur"
     ];
@@ -52,6 +52,9 @@
     zed-editor
     claude-code
     brave
+    kubectl
+    talosctl
+    docker-compose
   ];
 
   # Microcode AMD
@@ -69,8 +72,8 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # hyprlock — authentification PAM
-  security.pam.services.hyprlock = {};
+  # swaylock — authentification PAM
+  security.pam.services.swaylock = {};
 
   # SSH
   services.openssh = {
@@ -89,6 +92,9 @@
     alsa.enable = true;
     pulse.enable = true;
   };
+
+  # Docker
+  virtualisation.docker.enable = true;
 
   # Performance
   services.fstrim.enable = true;

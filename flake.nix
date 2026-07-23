@@ -45,7 +45,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.noynto = import ./home/noynto-hyprland.nix;
+              home-manager.users.noynto = import ./home/noynto-sway.nix;
             }
           ];
         };
