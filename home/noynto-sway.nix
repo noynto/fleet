@@ -108,18 +108,18 @@
       };
     };
 
-    # --to-code : bind par position physique de touche, indispensable avec xkb_layout fr (AZERTY)
+    # Workspaces AZERTY : keysyms explicites (sans Shift = &éè"'( ; avec Shift = chiffres)
     extraConfig = ''
-      bindsym --to-code Mod4+1 workspace number 1
-      bindsym --to-code Mod4+2 workspace number 2
-      bindsym --to-code Mod4+3 workspace number 3
-      bindsym --to-code Mod4+4 workspace number 4
-      bindsym --to-code Mod4+5 workspace number 5
-      bindsym --to-code Mod4+Shift+1 move container to workspace number 1
-      bindsym --to-code Mod4+Shift+2 move container to workspace number 2
-      bindsym --to-code Mod4+Shift+3 move container to workspace number 3
-      bindsym --to-code Mod4+Shift+4 move container to workspace number 4
-      bindsym --to-code Mod4+Shift+5 move container to workspace number 5
+      bindsym Mod4+ampersand  workspace number 1
+      bindsym Mod4+eacute     workspace number 2
+      bindsym Mod4+quotedbl   workspace number 3
+      bindsym Mod4+apostrophe workspace number 4
+      bindsym Mod4+parenleft  workspace number 5
+      bindsym Mod4+1 move container to workspace number 1
+      bindsym Mod4+2 move container to workspace number 2
+      bindsym Mod4+3 move container to workspace number 3
+      bindsym Mod4+4 move container to workspace number 4
+      bindsym Mod4+5 move container to workspace number 5
     '';
   };
 
