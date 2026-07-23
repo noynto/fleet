@@ -30,6 +30,7 @@
     windowManager.i3.enable = true;
     displayManager.startx.enable = true;
   };
+  services.displayManager.defaultSession = "none+i3";
 
   # Display manager — greetd + tuigreet (Everforest Dark)
   services.greetd = {
