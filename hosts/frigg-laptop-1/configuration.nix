@@ -28,6 +28,7 @@
     enable = true;
     xkb.layout = "fr";
     windowManager.i3.enable = true;
+    displayManager.startx.enable = true;
   };
 
   # Display manager — greetd + tuigreet (Everforest Dark)
