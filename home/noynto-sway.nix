@@ -98,17 +98,6 @@
         "${modifier}+Shift+space" = "floating toggle";
         "${modifier}+space"       = "focus mode_toggle";
 
-        # Workspaces
-        "${modifier}+1" = "workspace number 1";
-        "${modifier}+2" = "workspace number 2";
-        "${modifier}+3" = "workspace number 3";
-        "${modifier}+4" = "workspace number 4";
-        "${modifier}+5" = "workspace number 5";
-        "${modifier}+Shift+1" = "move container to workspace number 1";
-        "${modifier}+Shift+2" = "move container to workspace number 2";
-        "${modifier}+Shift+3" = "move container to workspace number 3";
-        "${modifier}+Shift+4" = "move container to workspace number 4";
-        "${modifier}+Shift+5" = "move container to workspace number 5";
 
         # Touches média
         "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
@@ -118,6 +107,20 @@
         "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
       };
     };
+
+    # --to-code : bind par position physique de touche, indispensable avec xkb_layout fr (AZERTY)
+    extraConfig = ''
+      bindsym --to-code Mod4+1 workspace number 1
+      bindsym --to-code Mod4+2 workspace number 2
+      bindsym --to-code Mod4+3 workspace number 3
+      bindsym --to-code Mod4+4 workspace number 4
+      bindsym --to-code Mod4+5 workspace number 5
+      bindsym --to-code Mod4+Shift+1 move container to workspace number 1
+      bindsym --to-code Mod4+Shift+2 move container to workspace number 2
+      bindsym --to-code Mod4+Shift+3 move container to workspace number 3
+      bindsym --to-code Mod4+Shift+4 move container to workspace number 4
+      bindsym --to-code Mod4+Shift+5 move container to workspace number 5
+    '';
   };
 
   # Verrouillage d'écran
