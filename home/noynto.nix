@@ -39,6 +39,7 @@ in
     };
   };
 
+  xsession.enable = true;
   xsession.scriptPath = ".xinitrc";
 
   # i3
