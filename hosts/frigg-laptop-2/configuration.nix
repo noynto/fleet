@@ -108,20 +108,8 @@
     };
   };
 
-  # Swap fichier pour l'hibernation (16 Go = taille RAM)
-  swapDevices = [{
-    device = "/swapfile";
-    size   = 16384;
-  }];
-
-  # Fermeture couvercle → hibernation
-  services.logind.settings.Login.HandleLidSwitch = "hibernate";
-
-  # À compléter après installation : lancer sur la machine cible
-  #   sudo findmnt -no UUID /
-  #   sudo filefrag -v /swapfile | awk 'NR==4{print $4}' | tr -d '.'
-  # boot.resumeDevice = "/dev/disk/by-uuid/XXXX";
-  # boot.kernelParams = [ "resume_offset=XXXX" ];
+  # Fermeture couvercle → suspend
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
 
   system.stateVersion = "26.05";
 }
