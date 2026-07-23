@@ -24,9 +24,12 @@
   console.keyMap = "fr";
 
   # Display manager
-  services.displayManager.sddm = {
+  services.greetd = {
     enable = true;
-    wayland.enable = true;
+    settings.default_session = {
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway --theme \"border=a7c080;text=d3c6aa;prompt=d3c6aa;time=a7c080;action=a7c080;button=a7c080;container=2d353b;input=343f44\"";
+      user = "greeter";
+    };
   };
 
   # Sway
