@@ -271,7 +271,7 @@
   # Lanceur d'applications (build Wayland)
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     terminal = "kitty";
     extraConfig = {
       show-icons = true;
