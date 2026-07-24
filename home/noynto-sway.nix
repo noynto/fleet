@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "noynto";
@@ -371,7 +371,7 @@
     grim
     slurp
     papirus-icon-theme
-    jdk21
+    (lib.lowPrio jdk21)
     jdk25
   ];
 
