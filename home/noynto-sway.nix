@@ -372,7 +372,6 @@
     slurp
     papirus-icon-theme
     jdk21
-    jdk23
     jdk25
   ];
 
