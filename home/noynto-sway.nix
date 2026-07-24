@@ -371,6 +371,7 @@
     grim
     slurp
     papirus-icon-theme
+    wdisplays
     (lib.lowPrio jdk21)
     jdk25
   ];
