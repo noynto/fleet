@@ -371,6 +371,9 @@
     grim
     slurp
     papirus-icon-theme
+    jdk21
+    jdk23
+    jdk25
   ];
 
   home.stateVersion = "26.05";
