@@ -255,12 +255,14 @@
   # Mako (notifications)
   services.mako = {
     enable = true;
-    backgroundColor = "#2d353b";
-    textColor = "#d3c6aa";
-    borderColor = "#a7c080";
-    borderRadius = 8;
-    defaultTimeout = 5000;
-    font = "monospace 10";
+    settings = {
+      background-color = "#2d353b";
+      text-color = "#d3c6aa";
+      border-color = "#a7c080";
+      border-radius = 8;
+      default-timeout = 5000;
+      font = "monospace 10";
+    };
     extraConfig = ''
       [urgency=critical]
       background-color=#e67e80
