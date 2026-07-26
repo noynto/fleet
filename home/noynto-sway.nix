@@ -372,8 +372,6 @@
     slurp
     papirus-icon-theme
     wdisplays
-    (lib.lowPrio jdk21)
-    jdk25
   ];
 
   home.stateVersion = "26.05";
