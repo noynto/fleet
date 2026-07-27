@@ -320,6 +320,20 @@
   '';
 
   # Thème GTK
+  xdg.configFile."zed/settings.json".text = builtins.toJSON {
+    base_keymap = "JetBrains";
+    session.trust_all_worktrees = true;
+    agent_servers.claude-acp.type = "registry";
+    ui_font_size = 16;
+    buffer_font_size = 15;
+    theme = {
+      mode = "dark";
+      light = "One Light";
+      dark = "Everforest Dark Soft (material)";
+    };
+    lsp.jdtls.settings.java_home = "${pkgs.jdk25}";
+  };
+
   xdg.configFile."gtk-3.0/settings.ini".text = ''
     [Settings]
     gtk-icon-theme-name=Papirus-Dark
@@ -374,6 +388,7 @@
     slurp
     papirus-icon-theme
     wdisplays
+    jdk25
   ];
 
   home.stateVersion = "26.05";
