@@ -92,6 +92,9 @@
     pulse.enable = true;
   };
 
+  # nix-ld — permet d'exécuter les binaires ELF génériques (ex: extensions Zed)
+  programs.nix-ld.enable = true;
+
   # Docker
   virtualisation.docker.enable = true;
 
