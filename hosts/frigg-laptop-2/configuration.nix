@@ -58,6 +58,7 @@
     kubectl
     talosctl
     docker-compose
+    freecad
   ];
 
   # Microcode AMD
